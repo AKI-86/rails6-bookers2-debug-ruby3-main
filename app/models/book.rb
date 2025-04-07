@@ -5,7 +5,8 @@ class Book < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
-  
+  has_many :favorited_users, through: :favorites, source: :user
+
   has_many :book_comments, dependent: :destroy
 
   validates :title,presence:true
